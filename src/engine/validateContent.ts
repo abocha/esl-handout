@@ -17,11 +17,18 @@ export function validateContent(pack: HandoutPack): string[] {
   const errors: string[] = [];
   const taskIds = new Set<string>();
   const theoryCardIds = new Set<string>();
+  const clusterIds = new Set(pack.clusters.map((cluster) => cluster.id));
   const tasks = allTasks(pack);
 
   for (const card of pack.theoryCards) {
     if (theoryCardIds.has(card.id)) errors.push(`Duplicate theory card id: ${card.id}`);
     theoryCardIds.add(card.id);
+  }
+
+  for (const section of pack.diagnostic) {
+    for (const clusterId of section.suggestedClusterIds ?? []) {
+      if (!clusterIds.has(clusterId)) errors.push(`Diagnostic section ${section.id} references missing cluster: ${clusterId}`);
+    }
   }
 
   for (const task of tasks) {

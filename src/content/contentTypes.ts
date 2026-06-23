@@ -43,6 +43,7 @@ export type DiagnosticSection = {
   readonly id: string;
   readonly title: string;
   readonly description: string;
+  readonly suggestedClusterIds?: readonly string[];
   readonly tasks: readonly Task[];
 };
 

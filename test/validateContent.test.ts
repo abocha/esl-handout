@@ -35,6 +35,12 @@ test("reports a choice whose correct option is absent", () => {
   expect(validateContent(invalid)).toEqual(expect.arrayContaining([expect.stringContaining("must match exactly one option")]));
 });
 
+test("reports a diagnostic suggestion that references a missing cluster", () => {
+  const firstSection = handoutPack.diagnostic[0]!;
+  const invalid = { ...handoutPack, diagnostic: [{ ...firstSection, suggestedClusterIds: ["missing-cluster"] }] };
+  expect(validateContent(invalid)).toEqual(expect.arrayContaining([expect.stringContaining("missing cluster")]));
+});
+
 test("reports empty prompts and auto-check explanations", () => {
   const firstSection = handoutPack.diagnostic[0]!;
   const invalid = { ...handoutPack, diagnostic: [{ ...firstSection, tasks: [{ id: "empty", kind: "gap", skillTags: [], prompt: "", explanation: "", acceptedAnswers: ["x"] }] }] };
