@@ -1,0 +1,28 @@
+{
+  "name": "a2-english-maintenance-map",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "vite",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "validate:content": "vitest run test/validateContent.test.ts",
+    "build": "vite build && node scripts/rename-output.mjs"
+  },
+  "dependencies": {
+    "@preact/preset-vite": "^2.10.1",
+    "preact": "^10.27.2",
+    "vite-plugin-singlefile": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "jsdom": "^26.1.0",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "vitest": "^3.2.4"
+  }
+}

@@ -1,0 +1,14 @@
+import { defineConfig } from "vite";
+import preact from "@preact/preset-vite";
+import { viteSingleFile } from "vite-plugin-singlefile";
+
+export default defineConfig({
+  plugins: [preact(), viteSingleFile()],
+  build: {
+    cssCodeSplit: false
+  },
+  test: {
+    environment: "jsdom",
+    include: ["test/**/*.test.{ts,tsx}"]
+  }
+});
