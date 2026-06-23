@@ -1,6 +1,6 @@
 export const progressStorageKey = "a2-maintenance-map:v0.1:progress";
 
-export type SavedCheckResult = { correct: boolean; answer: string };
+export type SavedCheckResult = { correct: boolean; correctAnswer: string };
 
 export type ProgressState = {
   checked: Record<string, SavedCheckResult>;

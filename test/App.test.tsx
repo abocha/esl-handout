@@ -14,3 +14,16 @@ test("shows the handout title", () => {
 
   expect(root.textContent).toContain("A2+ English Maintenance Map");
 });
+
+test("shows all five student-facing areas", () => {
+  const root = document.createElement("div");
+  document.body.append(root);
+
+  render(<App />, root);
+
+  expect(root.textContent).toContain("Start");
+  expect(root.textContent).toContain("Mixed Check");
+  expect(root.textContent).toContain("Guided Practice");
+  expect(root.textContent).toContain("Theory Cards");
+  expect(root.textContent).toContain("Result Summary");
+});

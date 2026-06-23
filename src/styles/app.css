@@ -1,11 +1,45 @@
-:root {
-  color: #1f2933;
-  background: #f4f7f6;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
-
+:root { color: #20302f; background: #f3f6f4; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.55; }
 * { box-sizing: border-box; }
-
 body { margin: 0; }
-
-.app-shell { margin: 0 auto; max-width: 960px; padding: 2rem 1rem; }
+button, input, textarea { font: inherit; }
+button { cursor: pointer; border: 0; border-radius: .55rem; background: #185c55; color: white; padding: .65rem .9rem; }
+button:hover { background: #104842; }
+button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid #e4a11b; outline-offset: 2px; }
+.app-shell { max-width: 1000px; margin: 0 auto; padding: 1.25rem; }
+.masthead { padding: 1rem 0 .5rem; }
+.masthead h1, h2, h3 { color: #173d39; line-height: 1.18; }
+.masthead h1 { font-size: clamp(2rem, 5vw, 3.2rem); margin: .2rem 0; }
+.eyebrow, .task-kind { color: #57726e; font-size: .82rem; font-weight: 700; letter-spacing: .08em; margin: 0 0 .35rem; text-transform: uppercase; }
+.section-nav { display: flex; gap: .45rem; overflow-x: auto; padding: .75rem 0; border-bottom: 1px solid #d5e1dc; }
+.section-nav button { background: transparent; color: #35534e; white-space: nowrap; }
+.section-nav button.is-active { background: #d9ebe5; color: #173d39; }
+.privacy-bar { align-items: center; color: #526863; display: flex; font-size: .9rem; gap: 1rem; justify-content: space-between; padding: .9rem 0; }
+.text-button { background: transparent; color: #185c55; padding: .25rem; text-decoration: underline; }
+.text-button:hover { background: transparent; color: #0b3934; }
+.start-page, .cluster-view, .diagnostic-section, .result-summary, .final-output { background: #fff; border: 1px solid #dbe7e2; border-radius: 1rem; box-shadow: 0 8px 24px rgba(24, 62, 55, .06); margin: 1.2rem 0; padding: clamp(1rem, 4vw, 2rem); }
+.start-page li { margin: .55rem 0; }
+.task-card { border-top: 1px solid #dbe7e2; margin-top: 1.25rem; padding-top: 1.25rem; }
+.task-card h3 { font-size: 1.05rem; margin: .1rem 0 .8rem; }
+.choice-list { display: grid; gap: .55rem; margin: .8rem 0; }
+.choice-list label { align-items: flex-start; background: #f6f9f7; border: 1px solid #dbe7e2; border-radius: .6rem; display: flex; gap: .6rem; padding: .7rem; }
+.answer-input, textarea { border: 1px solid #aabdb7; border-radius: .55rem; display: block; margin: .75rem 0; max-width: 100%; padding: .65rem; width: 36rem; }
+textarea { min-height: 7rem; width: 100%; }
+.chunk-list { display: flex; flex-wrap: wrap; gap: .5rem; }
+.chunk-list button { background: #d9ebe5; color: #173d39; }
+.feedback { border-left: 4px solid; border-radius: .4rem; margin-top: 1rem; padding: .75rem 1rem; }
+.feedback p { margin: .35rem 0; }
+.feedback.correct { background: #e6f5ed; border-color: #277a51; }
+.feedback.incorrect { background: #fff4df; border-color: #bd7b16; }
+.theory-links { align-items: center; display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .8rem; }
+.guidance, .gentle-note { color: #526863; font-size: .94rem; }
+.progress-text { color: #526863; font-weight: 600; }
+.cluster-stage { margin-top: 1.5rem; }
+.theory-drawer { background: #fff; border: 1px solid #dbe7e2; border-radius: 1rem; display: grid; grid-template-columns: minmax(12rem, .8fr) minmax(0, 2fr); margin-top: 1.2rem; min-height: 28rem; overflow: hidden; }
+.theory-list { background: #edf4f1; padding: 1rem; }
+.theory-list button { background: transparent; color: #264f48; display: block; margin-bottom: .35rem; text-align: left; width: 100%; }
+.theory-list button.is-active { background: #cfe3db; }
+.theory-detail { padding: clamp(1rem, 4vw, 2rem); }
+.close-button { float: right; }
+.result-summary pre { background: #183e39; border-radius: .7rem; color: #f5fbf8; overflow-wrap: anywhere; padding: 1rem; white-space: pre-wrap; }
+.copy-message { color: #185c55; font-weight: 600; }
+@media (max-width: 640px) { .app-shell { padding: 1rem; } .privacy-bar { align-items: flex-start; flex-direction: column; gap: .35rem; } .theory-drawer { display: block; } .theory-list { max-height: 14rem; overflow: auto; } }
