@@ -1,30 +1,30 @@
 export const handoutPack = {
   meta: {
     id: "a2-core-review-v0.1",
-    title: "A2+ English Maintenance Map: Core Review",
-    subtitle: "Check, remember, practise",
-    level: "A2+ foundations",
+    title: "A2+ English Review Map: Core Review",
+    subtitle: "Check, review, practise",
+    level: "A2+ review",
     version: "0.1",
     audience: "Adult ESL learner with strong communication skills and unstable grammar anchors",
     estimatedUse: "3-5 short sittings"
   },
 
   startPage: {
-    title: "A2+ English Maintenance Map",
-    intro: "This handout helps you review English you already know. First, try the mixed check. Then practise the sections where you make mistakes. You do not need to finish everything in one day. Mistakes are useful here because they show what to review.",
+    title: "A2+ English Review Map",
+    intro: "This page helps you review English you already know. First, try a quick check. Then practise the parts that are difficult for you. You do not need to finish everything in one day. Mistakes are useful: they show what to review.",
     instructions: [
-      "Try first. Do not read all theory before you start.",
-      "After each task, check the feedback and notice the pattern.",
-      "Open theory cards only when you need a reminder.",
-      "Use the personal prompts for real English, not perfect textbook English.",
-      "At the end, copy the summary and send it to your teacher if you want."
+      "Try first. Do not read all Grammar notes before you start.",
+      "After each task, check the feedback and read the Grammar help if you need it.",
+      "Open Grammar help only when you need a reminder.",
+      "Use the writing tasks to make your own sentences. They do not need to be perfect.",
+      "At the end, copy the summary and send it to your teacher."
     ]
   },
 
   diagnostic: [
     {
       id: "diagnostic-sentence-engine",
-      title: "Mixed Check 1: sentence engine",
+      title: "Mixed Check 1: sentence structure",
       description: "Questions, negatives, auxiliaries, and basic word order.",
       tasks: [
         {
@@ -431,7 +431,7 @@ export const handoutPack = {
     },
     {
       id: "diagnostic-natural-phrases",
-      title: "Mixed Check 5: natural phrases",
+      title: "Mixed Check 5: common phrases",
       description: "Everyday phrases that often go wrong.",
       tasks: [
         {
@@ -538,8 +538,8 @@ export const handoutPack = {
   clusters: [
     {
       id: "sentence-engine",
-      title: "Cluster 1: Sentence engine",
-      shortTitle: "Sentence engine",
+      title: "Cluster 1: Sentence structure",
+      shortTitle: "Sentence structure",
       purpose: "Build stable basic sentence structure: word order, questions, negatives, and auxiliaries.",
       focus: ["word order", "questions", "negatives", "do/does/did", "third-person -s"],
       typicalMistakes: ["Why you are tired?", "She don't like it.", "I no understand.", "Where you went?"],

@@ -23,9 +23,13 @@ export function TaskCard({ task, answer, savedResult, completed, onAnswerChange,
   const [expandedTheoryCardId, setExpandedTheoryCardId] = useState<string>();
   const linkedTheoryCards = (task.theoryCardIds ?? []).flatMap((cardId) => theoryCards.filter((card) => card.id === cardId));
   const expandedTheoryCard = linkedTheoryCards.find((card) => card.id === expandedTheoryCardId);
+  const grammarHelp = linkedTheoryCards.length > 0 && <div className="theory-links">
+    <span>Grammar help:</span>
+    {linkedTheoryCards.map((card) => <button type="button" className="text-button" key={card.id} onClick={() => setExpandedTheoryCardId((current) => current === card.id ? undefined : card.id)}>{card.title}</button>)}
+  </div>;
 
   return <article className="task-card">
-    <p className="task-kind">{referenceNumber && <span className="task-number">{referenceNumber}.</span>}{task.kind === "personal" ? "Use it personally" : "Try it"}</p>
+    <p className="task-kind">{referenceNumber && <span className="task-number">{referenceNumber}.</span>}{task.kind === "personal" ? "Your turn" : "Try"}</p>
     {task.kind === "choice" ? <fieldset className="choice-list">
       <legend>{task.prompt}</legend>
       {task.options.map((option) => <label key={option.id}>
@@ -40,20 +44,30 @@ export function TaskCard({ task, answer, savedResult, completed, onAnswerChange,
       <button type="button" className="text-button" onClick={() => onAnswerChange("")}>Clear order</button>
     </div>}
     {isPersonal && <>
-      <textarea value={answer} onInput={(event) => onAnswerChange(event.currentTarget.value)} placeholder="Write here if you want to practise in this sitting." aria-label={`Personal response for ${task.id}`} />
+      <textarea value={answer} onInput={(event) => onAnswerChange(event.currentTarget.value)} placeholder="Write your answer here. This text is not saved after you close or refresh the page." aria-label={`Personal response for ${task.id}`} />
       {task.guidance && <p className="guidance">{task.guidance}</p>}
-      <p className="gentle-note">This one is for real use. Write your answer, then discuss it with your teacher if you want.</p>
-      <button type="button" onClick={onCompletePersonal}>{completed ? "Marked complete" : "Mark complete"}</button>
+      <p className="gentle-note">Write your own answer. You can discuss it with your teacher.</p>
+      <div className="task-actions">
+        <button type="button" onClick={onCompletePersonal}>{completed ? "Done" : "Done for now"}</button>
+        {grammarHelp}
+      </div>
     </>}
-    {!isPersonal && <button type="button" onClick={onCheck}>{savedResult ? "Check again" : "Check answer"}</button>}
-    {savedResult && <div className={feedbackClass} role="status">
-      <strong>{savedResult.correct ? "That works." : "Not quite yet."}</strong>
-      {savedResult.correct ? <p>{task.explanation}</p> : savedResult.answerRevealed ? <><p>Correct answer: {savedResult.correctAnswer}</p><p>{task.explanation}</p></> : <><p>Open a repair card, then try again.</p>{onShowAnswer && <button type="button" className="show-answer-button" onClick={onShowAnswer}>Show answer</button>}</>}
+    {!isPersonal && <div className="task-actions">
+      <button type="button" onClick={onCheck}>{savedResult ? "Check again" : "Check answer"}</button>
+      {grammarHelp}
     </div>}
-    {linkedTheoryCards.length > 0 && <div className="theory-links">
-      <span>Need a reminder?</span>
-      {linkedTheoryCards.map((card) => <button type="button" className="text-button" key={card.id} onClick={() => setExpandedTheoryCardId((current) => current === card.id ? undefined : card.id)}>{card.title}</button>)}
+    <div className={`collapsible${savedResult ? ' is-open' : ''}`}>
+      <div className="collapsible-body">
+        {savedResult && <div className={feedbackClass} role="status">
+          <strong>{savedResult.correct ? "Correct." : "Not correct yet."}</strong>
+          {savedResult.correct ? <p>{task.explanation}</p> : savedResult.answerRevealed ? <><p>Correct answer: {savedResult.correctAnswer}</p><p>{task.explanation}</p></> : <><p><strong>Hint:</strong> Use Grammar help, then try again.</p>{onShowAnswer && <button type="button" className="show-answer-button" onClick={onShowAnswer}>Show answer</button>}</>}
+        </div>}
+      </div>
+    </div>
+    {linkedTheoryCards.length > 0 && <div className={`collapsible theory-slot${expandedTheoryCard ? ' is-open' : ''}`}>
+      <div className="collapsible-body">
+        {expandedTheoryCard && <section className="inline-theory-card" aria-label={`${expandedTheoryCard.title} Grammar help`}><TheoryCardContent card={expandedTheoryCard} /></section>}
+      </div>
     </div>}
-    {expandedTheoryCard && <section className="inline-theory-card" aria-label={`${expandedTheoryCard.title} repair card`}><TheoryCardContent card={expandedTheoryCard} /></section>}
   </article>;
 }

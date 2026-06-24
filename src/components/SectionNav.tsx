@@ -4,8 +4,8 @@ const areas: readonly { id: Area; label: string }[] = [
   { id: "start", label: "Start" },
   { id: "diagnostic", label: "Mixed Check" },
   { id: "practice", label: "Guided Practice" },
-  { id: "theory", label: "Reference" },
-  { id: "summary", label: "Result Summary" }
+  { id: "theory", label: "Grammar notes" },
+  { id: "summary", label: "Practice summary" }
 ];
 
 export function SectionNav({ activeArea, onSelect }: { activeArea: Area; onSelect: (area: Area) => void }) {

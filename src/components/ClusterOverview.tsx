@@ -15,8 +15,8 @@ function clusterTasks(cluster: Cluster) {
 export function ClusterOverview({ clusters, checked, completedTaskIds, onSelect }: ClusterOverviewProps) {
   return <section className="diagnostic-overview" aria-labelledby="practice-overview-title">
     <p className="eyebrow">Guided Practice</p>
-    <h2 id="practice-overview-title">Choose a useful area for today.</h2>
-    <p>Pick one cluster, practise a little, and return whenever you want.</p>
+    <h2 id="practice-overview-title">Choose one area to practise today.</h2>
+    <p>Choose one cluster. Practise a little, then come back later if you want.</p>
     <div className="diagnostic-grid">
       {clusters.map((cluster, index) => {
         const tasks = clusterTasks(cluster);
@@ -25,7 +25,7 @@ export function ClusterOverview({ clusters, checked, completedTaskIds, onSelect 
         return <article className="diagnostic-card" key={cluster.id}>
           <h3>{label}</h3>
           <p>{cluster.purpose}</p>
-          <p className="progress-text">{completed}/{tasks.length} completed</p>
+          <p className="progress-text">{completed}/{tasks.length} done</p>
           <button type="button" onClick={() => onSelect(cluster.id)}>{completed ? `Continue ${label}` : `Start ${label}`}</button>
         </article>;
       })}

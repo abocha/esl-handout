@@ -16,8 +16,8 @@ function sectionLabel(section: DiagnosticSection): string {
 export function DiagnosticOverview({ sections, checked, completedTaskIds, onSelect }: DiagnosticOverviewProps) {
   return <section className="diagnostic-overview" aria-labelledby="diagnostic-overview-title">
     <p className="eyebrow">Mixed Check</p>
-    <h2 id="diagnostic-overview-title">Choose one small section to begin.</h2>
-    <p>Start anywhere. Your checked answers stay here when you come back.</p>
+    <h2 id="diagnostic-overview-title">Choose one short section to start.</h2>
+    <p>Start anywhere. Your checked answers are saved on this device.</p>
     <div className="diagnostic-grid">
       {sections.map((section, index) => {
         const completed = section.tasks.filter((task) => checked[task.id] || completedTaskIds.includes(task.id)).length;
@@ -25,7 +25,7 @@ export function DiagnosticOverview({ sections, checked, completedTaskIds, onSele
         return <article className="diagnostic-card" key={section.id}>
           <h3>{label}</h3>
           <p>{section.description}</p>
-          <p className="progress-text">{completed}/{section.tasks.length} completed</p>
+          <p className="progress-text">{completed}/{section.tasks.length} done</p>
           <button type="button" onClick={() => onSelect(section.id)}>{completed ? `Continue ${label}` : `Start ${label}`}</button>
         </article>;
       })}

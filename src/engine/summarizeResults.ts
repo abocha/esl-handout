@@ -7,12 +7,12 @@ export function createResultSummary(
   completedPersonalTaskIds: readonly string[]
 ): string {
   const sections = new Set(results.map((result) => result.section === "diagnostic" ? "Mixed Check" : "Guided Practice"));
-  if (completedPersonalTaskIds.length > 0) sections.add("Personal Output");
+  if (completedPersonalTaskIds.length > 0) sections.add("Writing practice");
   const practised = sections.size > 0 ? [...sections].join(", ") : "no sections yet";
   const recommendations = getReviewRecommendations(pack, results);
   const review = recommendations.length > 0
     ? recommendations.map((recommendation) => `• ${recommendation.message}`).join("\n")
-    : "• Keep using the patterns you practised in real conversations.";
+    : "• Keep using this grammar in real conversations.";
 
   return `Today I practised: ${practised}.\n\nYou may want to review:\n${review}`;
 }
