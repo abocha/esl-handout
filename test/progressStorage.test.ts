@@ -13,10 +13,10 @@ function fakeStorage(): Storage {
   };
 }
 
-test("round-trips checked state through supplied storage", () => {
+test("round-trips checked state and submitted answer through supplied storage", () => {
   const storage = fakeStorage();
   const store = createProgressStore(storage);
-  const progress = { checked: { task: { correct: true, correctAnswer: "a" } }, completedTaskIds: ["task"], completedClusterIds: ["cluster"] };
+  const progress = { checked: { task: { correct: true, correctAnswer: "a", submittedAnswer: "answer" } }, completedTaskIds: ["task"], completedClusterIds: ["cluster"] };
   store.save(progress);
   expect(createProgressStore(storage).load()).toEqual(progress);
 });

@@ -4,7 +4,7 @@ const areas: readonly { id: Area; label: string }[] = [
   { id: "start", label: "Start" },
   { id: "diagnostic", label: "Mixed Check" },
   { id: "practice", label: "Guided Practice" },
-  { id: "theory", label: "Theory Cards" },
+  { id: "theory", label: "Reference" },
   { id: "summary", label: "Result Summary" }
 ];
 
